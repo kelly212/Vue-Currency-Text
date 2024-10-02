@@ -8,6 +8,7 @@
                            ref_currency="valor" id="valor"
                            label="Valor"  hide-details>
           </v-currency-text>
+          Valor sem mascara: {{valor}}
         </v-col>
       </v-row>
     </v-container>

@@ -188,28 +188,40 @@
             }
          },
          removeMascaraMoney(x) {
+
+
+												
             if (this.validarCampo(x)) {
-               let aux;
-               x = "" + x;
-               if ((x.replace(",", ".") !== x)) {
-                  if (x.replace(".", "") !== x) {
-                     aux = x;
-                     x = x.replace(".", "")
-                  } else {
-                     aux = x
-                  }
-                  if (x.replace(",", ".") !== x) {
-                     x = x.replace(",", ".")
-                  } else {
-                     x = aux
-                  }
-               }
-               if (isNaN(parseFloat(x))) {
-                  x = 0
-               } else {
-                  x = parseFloat(x)
-               }
-               return x
+               // Remove os pontos que são usados como separadores de milhar
+               let valorSemPontos = x.replace(/\./g, '');
+
+               // Substitui a vírgula pelo ponto, para seguir o padrão numérico
+               let valorConvertido = valorSemPontos.replace(',', '.');
+
+               // Converte para número e retorna
+               return parseFloat(valorConvertido);
+               
+               // let aux;
+               // x = "" + x;
+               // if ((x.replace(",", ".") !== x)) {
+               //    if (x.replace(".", "") !== x) {
+               //       aux = x;
+               //       x = x.replace(".", "")
+               //    } else {
+               //       aux = x
+               //    }
+               //    if (x.replace(",", ".") !== x) {
+               //       x = x.replace(",", ".")
+               //    } else {
+               //       x = aux
+               //    }
+               // }
+               // if (isNaN(parseFloat(x))) {
+               //    x = 0
+               // } else {
+               //    x = parseFloat(x)
+               // }
+               // return x
             } else {
                return ''
             }
@@ -254,16 +266,16 @@
          }
       },
       watch: {
-         // value: function () {
-         //    if (this.validarCampo(this.value) && this.value > 0) {
-         //       this.money = this.mascaraValor(this.value, 2)
-         //    }
-         // },
+         value: function () {
+            if (this.validarCampo(this.value) && this.value > 0) {
+               this.money = this.mascaraValor(this.value, 2)
+            }
+         },
 
          money: function () {
             if (this.validarCampo(this.money)) {
                var v = this.removeMascaraMoney(this.money.replace('R$', ''))
-             
+              
                this.$emit('changing', v)
             }
             if (this.input_active) {
