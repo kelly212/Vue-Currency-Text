@@ -2,7 +2,6 @@ import {createApp} from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-import {loadFonts} from './plugins/webfontloader'
 import money3 from 'v-money3'
 import 'vuetify/styles'
 import * as components from 'vuetify/components'
@@ -13,9 +12,6 @@ const vuetify = createVuetify({
    components,
    directives,
 })
-
-
-loadFonts()
 
 createApp(App)
   .use(router)
