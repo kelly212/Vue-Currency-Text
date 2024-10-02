@@ -1,6 +1,6 @@
 {
   "name": "v-currency-text",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "description": " A currency component (<v-currency-text>) with all features of v-text-field. The component is compatible with vuetify 3.x and dynamic binds the props and listeners to v-text-field component.",
   "author": "Kelly",
   "main": "src/index.js",
