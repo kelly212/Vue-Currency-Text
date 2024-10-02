@@ -1,14 +1,15 @@
 # Vue-Currency-Text
- A currency component (&lt;v-currency-text>) with all features of v-text-field. The component is compatible with vuetify 3.x and dynamic binds the props and listeners to v-text-field component.
-
+Um componente de moeda (<v-currency-text>) com as funcionalidades do v-text-field. O componente é compatível com Vuetify 3.x.
 ## Install 
 #### NPM 
-To use the component in your Vue 3 project, install the package via NPM: 
+Para usar o componente em seu projeto Vue 3, instale o pacote via NPM:
+
 ```bash 
 npm install v-currency-text 
 ``` 
-## Usage 
-In your Vue project, import and register the component: 
+## Uso
+No seu projeto Vue, importe e registre o componente:
+
 ```javascript 
 import { createApp } from 'vue';
 import App from './App.vue';
@@ -21,8 +22,9 @@ app.use(vuetify);
 app.component('VCurrencyText', VCurrencyText);
 app.mount('#app');
 ```
-## Usage Example
-You can use the component as follows:
+## Exemplo de Uso
+Você pode usar o componente da seguinte maneira:
+
 ```vue
 <template>
 <v-currency-text
@@ -63,23 +65,24 @@ value: 0,
 </script>
 ```
 #### Props
-* v-model: Controls the value of the input .
-* name: Defines the name of the field, used in forms.
-* prefixo: Currency prefix (Ex: "R$").
-* density: Defines the density of the field, controlling the spacing. (Ex: "compact", " default").
-* variant: Field style. (Ex: "outlined", "filled").
-* value: The current value of the input.
-* @changing: Event emitted when the value changes, returning the new value.
-* ref_currency : Internal reference to the monetary field.
-* id: ID of the element, useful for associating labels or accessibility.
-* label: Text that will be displayed as the field label. * v-bind: Used to pass additional settings, such as precision (decimal precision).
-* hide-details: Hides additional details of the field, such as error messages.
+* v-model: Controla o valor do input.
+* name: Define o nome do campo, usado em formulários.
+* prefix: Prefixo da moeda (Ex: "R$").
+* density: Define a densidade do campo, controlando o espaçamento. (Ex: "compact", "default").
+* variant: Estilo do campo. (Ex: "outlined", "filled").
+* value: O valor atual do input.
+* @changing: Evento emitido quando o valor muda, retornando o novo valor.
+* ref_currency: Referência interna para o campo monetário.
+* id: ID do elemento, útil para associar labels ou acessibilidade.
+* label: Texto que será exibido como rótulo do campo.
+* v-bind: Usado para passar configurações adicionais, como precisão (decimal).
+* hide-details: Oculta detalhes adicionais do campo, como mensagens de erro.
 
 #### Events
-* @change: Emits the new monetary value every time that the field is subject to change.
+* @change: Emite o novo valor monetário sempre que o campo for alterado.
 
 #### Slots
-This component does not currently use slots
+Este componente atualmente não utiliza slots.
 
-#### References
+#### Referências
 * https://github.com/jonathanpmartins/v-money3 (based on v-money)

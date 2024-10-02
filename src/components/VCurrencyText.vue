@@ -73,6 +73,7 @@
          validation: {type: String, default: ''},
          hint: {type: String, default: ''},
          append: {type: String, default: ''},
+         locale: {type: String, default: 'pt-BR'},
          label: {type: String},
          value: {type: [String, Number]},
          regras: {type: Array, default: () => []},
@@ -138,7 +139,7 @@
             return (campo !== undefined && campo !== null && campo !== '')
          },
          setClasseErro() {
-            var v = this.removeMascaraMoney(this.money.replace('R$', ''))
+            var v = this.removeMascaraMoney(this.money.replace(this.prefixo, ''))
 
             if (this.validation === 'requerid') {
                if (!this.validarCampo(v) || this.toDecimal(v) <= 0) {
@@ -237,14 +238,14 @@
             const numDecimais = (decimais !== null && decimais !== undefined) ? decimais : 2;
             if (valor !== undefined && valor !== null) {
                if (comPrefixo !== null && comPrefixo !== undefined && comPrefixo) {
-                  return Number(valor).toLocaleString('pt-br', {
+                  return Number(valor).toLocaleString(this.locale, {
                      style: 'currency',
                      currency: 'BRL',
                      minimumFractionDigits: numDecimais
                   })
                } else {
                   
-                  return Number(valor).toLocaleString('pt-br', {minimumFractionDigits: numDecimais})
+                  return Number(valor).toLocaleString(this.locale, {minimumFractionDigits: numDecimais})
                }
             }
             return ''
@@ -274,7 +275,7 @@
 
          money: function () {
             if (this.validarCampo(this.money)) {
-               var v = this.removeMascaraMoney(this.money.replace('R$', ''))
+               var v = this.removeMascaraMoney(this.money.replace(this.prefixo, ''))
               
                this.$emit('changing', v)
             }
