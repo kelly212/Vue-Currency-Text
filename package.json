@@ -1,0 +1,49 @@
+{
+  "name": "v-currency-text",
+  "version": "1.0.0",
+  "description": " A currency component (<v-currency-text>) with all features of v-text-field. The component is compatible with vuetify 3.x and dynamic binds the props and listeners to v-text-field component.",
+  "author": "Kelly",
+  "main": "src/index.js",
+  "files": [
+    "src/**/*"
+  ],
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "test": "v-currency-text test"
+  },
+  "dependencies": {
+    "@mdi/font": "^7.4.47",
+    "core-js": "^3.8.3",
+    "npm-check": "^6.0.1",
+    "roboto-fontface": "*",
+    "v-money3": "^3.24.1",
+    "vue": "^3.2.13",
+    "vue-router": "^4.0.3",
+    "vuetify": "^3.5",
+    "vuex": "^4.0.0",
+    "webfontloader": "^1.0.0"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~5.0.0",
+    "@vue/cli-plugin-router": "~5.0.0",
+    "@vue/cli-plugin-vuex": "~5.0.0",
+    "@vue/cli-service": "~5.0.0",
+    "vue-cli-plugin-vuetify": "~2.5.8",
+    "webpack-plugin-vuetify": "^3.0.3",
+    "sass": "^1.79.4",
+    "sass-loader": "^16.0.2"
+  },
+  "bugs": {
+    "url": "https://github.com/kelly212/Vue-Currency-Text/issues"
+  },
+  "homepage": "https://github.com/kelly212/Vue-Currency-Text#readme",
+  "keywords": [
+    "v-currency-text"
+  ],
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kelly212/Vue-Currency-Text.git"
+  }
+}
