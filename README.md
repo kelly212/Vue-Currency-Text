@@ -65,11 +65,11 @@ value: 0,
 #### Props
 * v-model: Controls the value of the input .
 * name: Defines the name of the field, used in forms.
-* prefix: Currency prefix (Ex: "R$").
+* prefixo: Currency prefix (Ex: "R$").
 * density: Defines the density of the field, controlling the spacing. (Ex: "compact", " default").
 * variant: Field style. (Ex: "outlined", "filled").
 * value: The current value of the input.
-* @change: Event emitted when the value changes, returning the new value.
+* @changing: Event emitted when the value changes, returning the new value.
 * ref_currency : Internal reference to the monetary field.
 * id: ID of the element, useful for associating labels or accessibility.
 * label: Text that will be displayed as the field label. * v-bind: Used to pass additional settings, such as precision (decimal precision).

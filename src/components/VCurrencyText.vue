@@ -1,34 +1,55 @@
 <template>
 			<div class="decimal">
-						<div
-								:class=" (disabled ? 'v-input--disabled' : '')+' v-input v-input--horizontal v-input--center-affix v-input--density-'+density+' v-locale--is-ltr v-input--dirty v-text-field inp '">
-									<div class="v-input__control">
-												<div
-														:class="(disabled ? 'v-field--disabled' : '')+'  v-field v-field--active v-field--center-affix v-field--dirty v-field--variant-'+variant+' v-theme--dark v-locale--is-ltr'">
-															<div class="v-field__field" data-no-activator=""><label class="v-label v-field-label" :for="id">
-																		{{label}}</label>
-																		<span class="v-text-field__prefix" style="color: inherit">
-																					{{prefixo}}
-																		</span>
-																		<money3 :id="id" v-model="money" :value="value" v-bind="configCurrency" @blur.native="onBlur" :disabled="disabled"
-																										@input="$emit('input', money)" :rules=rulesValidation @focus.native="onFocus($event)" class="v-field__input money3">
-																		</money3>
-																		<span v-if="sufixo!==null" class="v-text-field__suffix"  style="color: inherit">{{sufixo}}</span>
-															</div>
-															
-															<div class="v-field__outline">
-																		<div class="v-field__outline__start"></div>
-																		<div class="v-field__outline__notch">
-																					<label class=" v-input--disabled v-label v-field-label v-field-label--floating" aria-hidden="true"
-																												:for="id">{{label}}</label></div>
-																		<div class="v-field__outline__end"></div>
-															</div>
-												</div>
+						<v-text-field v-model="money"
+																				:id="id"
+																				:label="label"
+																				:prefix="prefixo"
+																				:ref="ref_currency"
+																				:rules="rulesValidation"
+																				:disabled="disabled"
+																				:variant="variant"
+																				:density="density"
+																				:hide-details="hideDetails"
+																				:readonly="readonly"
+																				style="z-index: 1"
+																				@keypress="CheckNumeric(event)"
+																				@blur="onblurField">
+									<div class="show_money">
+												<money3  v-model="money" :value="value" v-bind="precision" @blur.native="onBlur"
+																					@input="$emit('input', money)" :rules=rulesValidation @focus.native="onFocus($event)">
+												</money3>
 									</div>
-									<div class="v-input__append" v-if="validarCampo(append)">
-												<v-icon @click="appendClick()" :color="showHint ?'blue':'inherit'">{{append}}</v-icon>
-									</div>
-						</div>
+						</v-text-field>
+						
+						<!--<div-->
+								<!--:class=" (disabled ? 'v-input&#45;&#45;disabled' : '')+' v-input v-input&#45;&#45;horizontal v-input&#45;&#45;center-affix v-input&#45;&#45;density-'+density+' v-locale&#45;&#45;is-ltr v-input&#45;&#45;dirty v-text-field inp '">-->
+									<!--<div class="v-input__control">-->
+												<!--<div-->
+														<!--:class="(disabled ? 'v-field&#45;&#45;disabled' : '')+'  v-field v-field&#45;&#45;active v-field&#45;&#45;center-affix v-field&#45;&#45;dirty v-field&#45;&#45;variant-'+variant+' v-theme&#45;&#45;dark v-locale&#45;&#45;is-ltr'">-->
+															<!--<div class="v-field__field" data-no-activator=""><label class="v-label v-field-label" :for="id">-->
+																		<!--{{label}}</label>-->
+																		<!--<span class="v-text-field__prefix" style="color: inherit">-->
+																					<!--{{prefixo}}-->
+																		<!--</span>-->
+																		<!--<money3 :id="id" v-model="money" :value="value" v-bind="precision" @blur.native="onBlur" :disabled="disabled"-->
+																										<!--@input="$emit('input', money)" :rules=rulesValidation @focus.native="onFocus($event)" class="v-field__input money3">-->
+																		<!--</money3>-->
+																		<!--<span v-if="sufixo!==null" class="v-text-field__suffix" style="color: inherit">{{sufixo}}</span>-->
+															<!--</div>-->
+															<!---->
+															<!--<div class="v-field__outline">-->
+																		<!--<div class="v-field__outline__start"></div>-->
+																		<!--<div class="v-field__outline__notch">-->
+																					<!--<label class=" v-input&#45;&#45;disabled v-label v-field-label v-field-label&#45;&#45;floating" aria-hidden="true"-->
+																												<!--:for="id">{{label}}</label></div>-->
+																		<!--<div class="v-field__outline__end"></div>-->
+															<!--</div>-->
+												<!--</div>-->
+									<!--</div>-->
+									<!--<div class="v-input__append" v-if="validarCampo(append)">-->
+												<!--<v-icon @click="appendClick()" :color="showHint ?'blue':'inherit'">{{append}}</v-icon>-->
+									<!--</div>-->
+						<!--</div>-->
 			</div>
 </template>
 
@@ -45,6 +66,7 @@
          density: {type: String, default: 'compact'},
          variant: {type: String, default: 'outlined'},
          disabled: {type: Boolean, default: false},
+         hideDetails: {type: Boolean, default: true},
          showHint: {type: Boolean, default: false},
          readonly: {type: Boolean, default: false},
          ref_currency: {type: String, default: 'ref_currency'},
@@ -54,7 +76,20 @@
          label: {type: String},
          value: {type: [String, Number]},
          regras: {type: Array, default: () => []},
-         options: {type: Object, default: () => ({})}
+         options: {type: Object, default: () => ({})},
+         precision: {
+            default: {
+               decimal: ',',
+               thousands: '.',
+               prefix: '',
+               precision: 2,
+               masked: true,
+               disableNegative: true,
+               focusOnRight: true,
+             
+               // ...this.options
+            }
+         },
       },
       component: {money3: Money3Component},
       data() {
@@ -63,10 +98,6 @@
             v_field_error: '',
             errorMessages: [],
             rulesValidation: [],
-            configCurrency: {
-               decimal: ',', thousands: '.', prefix: '', precision: 2, masked: true,
-               disableNegative: true, focusOnRight: true, ...this.options
-            },
             money: 0,
             min: {type: String | Number},
             input_active: false,
@@ -200,6 +231,7 @@
                      minimumFractionDigits: numDecimais
                   })
                } else {
+                  
                   return Number(valor).toLocaleString('pt-br', {minimumFractionDigits: numDecimais})
                }
             }
@@ -222,16 +254,17 @@
          }
       },
       watch: {
-         value: function () {
-            if (this.validarCampo(this.value) && this.value > 0) {
-               this.money = this.mascaraValor(this.value, 2)
-            }
-         },
+         // value: function () {
+         //    if (this.validarCampo(this.value) && this.value > 0) {
+         //       this.money = this.mascaraValor(this.value, 2)
+         //    }
+         // },
 
          money: function () {
             if (this.validarCampo(this.money)) {
                var v = this.removeMascaraMoney(this.money.replace('R$', ''))
-               this.$emit('mudar', v)
+             
+               this.$emit('changing', v)
             }
             if (this.input_active) {
                this.setClasseErro()

@@ -4,9 +4,9 @@
       <v-row>
         <v-col cols="12">
           <v-currency-text v-model="valor" name="valor" prefixo="R$" density="compact" variant="outlined"
-                           :value="valor" @mudar="v => valor= v"
+                           :value="valor" @changing="(v) => valor=v"
                            ref_currency="valor" id="valor"
-                           label="Valor" v-bind="precisao" hide-details>
+                           label="Valor"  hide-details>
           </v-currency-text>
         </v-col>
       </v-row>
@@ -24,7 +24,7 @@ export default defineComponent({
   name: 'HomeView',
   data:()=>({
     valor: 1234567.89,
-    precisao: {
+    precision: {
       decimal: ',',
       thousands: '.',
       prefix: '',
@@ -40,5 +40,8 @@ export default defineComponent({
   components: {
     VCurrencyText,
   },
+  mounted() {
+  
+  }
 });
 </script>
