@@ -1,7 +1,6 @@
 import {createApp} from 'vue'
 import App from './App.vue'
 import router from './router'
-import store from './store'
 import money3 from 'v-money3'
 import 'vuetify/styles'
 import * as components from 'vuetify/components'
@@ -15,7 +14,6 @@ const vuetify = createVuetify({
 
 createApp(App)
   .use(router)
-  .use(store)
   .use(money3)
   .use(vuetify)
   .mount('#app')
