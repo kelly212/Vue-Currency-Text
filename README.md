@@ -81,5 +81,5 @@ value: 0,
 #### Slots
 This component does not currently use slots
 
-####References
+#### References
 * https://github.com/jonathanpmartins/v-money3 (based on v-money)
