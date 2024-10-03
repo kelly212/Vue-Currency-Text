@@ -1,5 +1,7 @@
+![GIF](public/movie.gif)
+
 # Vue-Currency-Text
-Um componente de moeda (<v-currency-text>) com as funcionalidades do v-text-field. O componente é compatível com Vuetify 3.x.
+Um componente de moeda com as funcionalidades do v-text-field. O componente é compatível com Vuetify 3.x.
 ## Install 
 #### NPM 
 Para usar o componente em seu projeto Vue 3, instale o pacote via NPM:

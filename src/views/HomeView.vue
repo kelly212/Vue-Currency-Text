@@ -1,8 +1,13 @@
 <template>
   <div>
     <v-container>
-      <v-row>
-        <v-col cols="12">
+      <br>
+      <div style="text-align: center">
+        <h1>Vue Currency Text</h1>
+        <br>
+      </div>
+      <v-row justify="center">
+        <v-col cols="4">
           <v-currency-text v-model="valor" name="valor" prefixo="R$" density="compact" variant="outlined"
                            :value="valor" @changing="(v) => valor=v"
                            ref_currency="valor" id="valor"
