@@ -1,7 +1,8 @@
 ![GIF](public/movie.gif)
 
 # Vue-Currency-Text
-Um componente de moeda com as funcionalidades do v-text-field. O componente é compatível com Vuetify 3.x.
+Um componente de moeda com as funcionalidades do v-text-field. O componente é compatível com Vuetify 3.x. 
+Ele utiliza a biblioteca v-money3 para garantir que os valores sejam exibidos e manipulados corretamente.
 ## Install 
 #### NPM 
 Para usar o componente em seu projeto Vue 3, instale o pacote via NPM:
@@ -36,7 +37,7 @@ prefix="R$"
 density="compact"
 variant="outlined"
 :value="value"
-@changing="v => value = v"
+@update="v => value = v"
 ref_currency="value"
 id="value"
 label="Value"
@@ -67,21 +68,39 @@ value: 0,
 </script>
 ```
 #### Props
-* v-model: Controla o valor do input.
 * name: Define o nome do campo, usado em formulários.
 * prefix: Prefixo da moeda (Ex: "R$").
 * density: Define a densidade do campo, controlando o espaçamento. (Ex: "compact", "default").
 * variant: Estilo do campo. (Ex: "outlined", "filled").
 * value: O valor atual do input.
-* @changing: Evento emitido quando o valor muda, retornando o novo valor.
+* @update: Evento emitido quando o valor muda, retornando o novo valor.
 * ref_currency: Referência interna para o campo monetário.
 * id: ID do elemento, útil para associar labels ou acessibilidade.
 * label: Texto que será exibido como rótulo do campo.
 * v-bind: Usado para passar configurações adicionais, como precisão (decimal).
 * hide-details: Oculta detalhes adicionais do campo, como mensagens de erro.
 
+## Props
+
+O componente aceita as seguintes propriedades:
+
+| Nome       | Tipo                     | Padrão          | Descrição                                    |
+|------------|--------------------------|------------------|----------------------------------------------|
+| `id`       | String                   | 'textField'      | Identificador único do campo.                |
+| `prefixo`  | String                   | ''               | Prefixo a ser exibido antes do valor.       |
+| `sufixo`   | String                   | null             | Sufixo a ser exibido após o valor.          |
+| `density`  | String                   | 'compact'        | Densidade do campo.                          |
+| `variant`  | String                   | 'outlined'       | Variantes de estilo do campo.                |
+| `disabled`  | Boolean                  | false            | Define se o campo está desabilitado.        |
+| `readonly`  | Boolean                  | false            | Define se o campo é somente leitura.         |
+| `value`    | String | Number         | ''               | Valor inicial do campo.                      |
+| `precision`| Object                   | Configurações padrão para formatação monetária. | Especificações de formatação.                |
+| `locale`   | String                   | 'pt-BR'          | Define a localidade para formatação.         |
+| `currency` | String                   | 'BRL'            | Código da moeda a ser usada.                 |
+
+
 #### Events
-* @change: Emite o novo valor monetário sempre que o campo for alterado.
+* @update: Emite o novo valor monetário sempre que o campo for alterado.
 
 #### Slots
 Este componente atualmente não utiliza slots.

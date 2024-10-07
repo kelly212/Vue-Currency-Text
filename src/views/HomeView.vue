@@ -9,7 +9,7 @@
       <v-row justify="center">
         <v-col cols="4">
           <v-currency-text v-model="valor" name="valor" prefixo="R$" density="compact" variant="outlined"
-                           :value="valor" @changing="(v) => valor=v"
+                           :value="valor" @update="(v) => valor=v"
                            ref_currency="valor" id="valor"
                            label="Valor"  hide-details>
           </v-currency-text>
