@@ -239,7 +239,7 @@
          // }
       },
       mounted() {
-         if (this.validarCampo(this.value) && this.value > 0) {
+         if (this.validarCampo(this.value) && this.value >= 0) {
             this.money = this.mascaraValor(this.value, 2)
          }
       },
@@ -250,8 +250,10 @@
       },
       watch: {
          value: function () {
-            if (this.validarCampo(this.value) && this.value > 0) {
+            if (this.validarCampo(this.value) && this.value >= 0) {
                this.money = this.mascaraValor(this.value, 2)
+            } else {
+               this.money = this.mascaraValor(0, 2)
             }
          },
 
