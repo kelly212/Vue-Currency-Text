@@ -1,30 +1,67 @@
 <template>
 			<div class="decimal">
 						<!--<v-text-field v-model="money"-->
-																				<!--:id="id"-->
-																				<!--:label="label"-->
-																				<!--:prefix="prefixo"-->
-																				<!--:ref="ref_currency"-->
-																				<!--:rules="rulesValidation"-->
-																				<!--:disabled="disabled"-->
-																				<!--:variant="variant"-->
-																				<!--:density="density"-->
-																				<!--:hide-details="hideDetails"-->
-																				<!--:readonly="readonly"-->
-																				<!--style="z-index: 1"-->
-																				<!--@keypress="CheckNumeric(event)"-->
-																				<!--@blur="onblurField">-->
-									<!--<div class="show_money">-->
-												<!--<money3  v-model="money" :value="value" v-bind="precision" @blur.native="onBlur"-->
-																					<!--@input="$emit('input', money)" :rules=rulesValidation @focus.native="onFocus($event)">-->
-												<!--</money3>-->
-									<!--</div>-->
+						<!--:id="id"-->
+						<!--:label="label"-->
+						<!--:prefix="prefixo"-->
+						<!--:ref="ref_currency"-->
+						<!--:rules="rulesValidation"-->
+						<!--:disabled="disabled"-->
+						<!--:variant="variant"-->
+						<!--:density="density"-->
+						<!--:hide-details="hideDetails"-->
+						<!--:readonly="readonly"-->
+						<!--style="z-index: 1"-->
+						<!--@keypress="CheckNumeric(event)"-->
+						<!--@blur="onblurField">-->
+						<!--<div class="show_money">-->
+						<!--<money3  v-model="money" :value="value" v-bind="precision" @blur.native="onBlur"-->
+						<!--@input="$emit('input', money)" :rules=rulesValidation @focus.native="onFocus($event)">-->
+						<!--</money3>-->
+						<!--</div>-->
 						<!--</v-text-field>-->
+						<!--<div-->
+								<!--class="v-input v-input&#45;&#45;horizontal v-input&#45;&#45;center-affix v-input&#45;&#45;density-compact v-theme&#45;&#45;dark v-locale&#45;&#45;is-ltr v-input&#45;&#45;error v-text-field inp">-->
+									<!--&lt;!&ndash;&ndash;&gt;-->
+									<!--<div class="v-input__control">-->
+												<!--<div class="v-field v-field&#45;&#45;center-affix v-field&#45;&#45;error v-field&#45;&#45;variant-outlined v-theme&#45;&#45;dark v-locale&#45;&#45;is-ltr">-->
+															<!--<div class="v-field__overlay"></div>-->
+															<!--<div class="v-field__loader">-->
+																		<!--<div class="v-progress-linear v-theme&#45;&#45;dark v-locale&#45;&#45;is-ltr" role="progressbar" aria-hidden="true" aria-valuemin="0"-->
+																							<!--aria-valuemax="100" style="top: 0px; height: 0px; &#45;&#45;v-progress-linear-height: 2px;">&lt;!&ndash;&ndash;&gt;-->
+																					<!--<div class="v-progress-linear__background bg-error"></div>-->
+																					<!--<div class="v-progress-linear__buffer bg-error" style="width: 0%;"></div>-->
+																					<!--<div class="v-progress-linear__indeterminate">-->
+																								<!--<div class="v-progress-linear__indeterminate long bg-error"></div>-->
+																								<!--<div class="v-progress-linear__indeterminate short bg-error"></div>-->
+																					<!--</div>&lt;!&ndash;&ndash;&gt;</div>-->
+															<!--</div>&lt;!&ndash;&ndash;&gt;-->
+															<!--<div class="v-field__field" data-no-activator="">&lt;!&ndash;&ndash;&gt;<label class="v-label v-field-label" id="descricao-label" aria-hidden="false"-->
+																																																																														<!--style="" for="descricao">&lt;!&ndash;&ndash;&gt;Descrição</label>&lt;!&ndash;&ndash;&gt;<input size="1"-->
+																																																																																																																																													<!--type="text"-->
+																																																																																																																																													<!--aria-labelledby="descricao-label"-->
+																																																																																																																																													<!--id="descricao"-->
+																																																																																																																																													<!--class="v-field__input"-->
+																																																																																																																																													<!--value=""-->
+																																																																																																																																													<!--autocomplete="off">-->
+																		<!--&lt;!&ndash;&ndash;&gt;</div>&lt;!&ndash;&ndash;&gt;&lt;!&ndash;&ndash;&gt;-->
+															<!--<div class="v-field__outline">-->
+																		<!--<div class="v-field__outline__start"></div>-->
+																		<!--<div class="v-field__outline__notch"><label class="v-label v-field-label v-field-label&#45;&#45;floating" aria-hidden="true" style="">-->
+																					<!--&lt;!&ndash;&ndash;&gt;Descrição</label></div>-->
+																		<!--<div class="v-field__outline__end"></div>&lt;!&ndash;&ndash;&gt;</div>-->
+												<!--</div>-->
+									<!--</div>&lt;!&ndash;&ndash;&gt;&lt;!&ndash;&ndash;&gt;</div>-->
 						
-						<div  :class=" (disabled ? 'v-input--disabled' : '')+' v-input v-input--horizontal v-input--center-affix v-input--density-'+density+' v-locale--is-ltr v-input--dirty v-text-field inp '">
-									<div class="v-input__control">
-												<div :class="(disabled ? 'v-field--disabled' : '')+'  v-field v-field--active v-field--center-affix v-field--dirty v-field--variant-'+variant+' v-theme--dark v-locale--is-ltr'">
-															<div class="v-field__field" data-no-activator="">
+						
+						<!--<p>isRequired:{{isRequired}}</p>-->
+						<div
+								:class=" (disabled ? 'v-input--disabled' : '')+' v-input v-input--horizontal v-input--center-affix v-input--density-'+density+' v-locale--is-ltr v-input--dirty v-text-field inp '+isRequired">
+						
+									<div class="v-input__control ">
+												<div
+														:class="(disabled ? 'v-field--disabled' : '')+'   v-field v-field--active v-field--center-affix v-field--dirty v-field--variant-'+variant+' v-theme--dark v-locale--is-ltr'">
+															<div class="v-field__field  " data-no-activator="">
 																		<label class="v-label v-field-label" :for="id">{{label}}</label>
 																		<span class="v-text-field__prefix" style="color: inherit">{{prefixo}}</span>
 																		<money3 :id="id"
@@ -32,7 +69,8 @@
 																										v-bind="precision"
 																										:disabled="disabled"
 																										:rules=rulesValidation
-																										class="v-field__input money3">
+																										@blur="onBlur"
+																										class="v-field__input  money3">
 																		</money3>
 																		<span v-if="sufixo!==null" class="v-text-field__suffix" style="color: inherit">{{sufixo}}</span>
 															</div>
@@ -91,7 +129,7 @@
                shouldRound: true,
                min: Number.MIN_SAFE_INTEGER,
                max: Number.MAX_SAFE_INTEGER
-             
+
                // ...this.options
             }
          },
@@ -99,19 +137,23 @@
       component: {money3: Money3Component},
       data() {
          return {
-            // v_input_error: '',
+            isRequired: '',
             // v_field_error: '',
             errorMessages: [],
             rulesValidation: [],
             money: 0,
             min: {type: String | Number},
             input_active: false,
+            rules: {
+               required: value => !!value || 'O campo é obrigatório',
+            },
          }
       },
       methods: {
          appendClick() {
             this.$emit('appendClick')
          },
+
          // onblurField() {
          //    this.$emit('blur')
          // },
@@ -142,9 +184,10 @@
          validarCampo(campo) {
             return (campo !== undefined && campo !== null && campo !== '')
          },
+         // v-input--error
          // setClasseErro() {
          //    var v = this.removeMascaraMoney(this.money.replace(this.prefixo, ''))
-									//
+         //
          //    if (this.validation === 'requerid') {
          //       if (!this.validarCampo(v) || this.toDecimal(v) <= 0) {
          //          this.v_input_error = 'v-input--error'
@@ -160,24 +203,31 @@
          //       this.v_field_error = ''
          //       this.errorMessages = []
          //    }
-									//
+         //
          // },
          // onFocus(event) {
+         //    console.log("onFocus");
          //    event.target.select();
          //    this.v_input_error = ''
          //    this.v_field_error = ''
 									//
          //    if (this.input_active) {
-         //       this.setClasseErro()
+         //       // this.setClasseErro()
          //    }
 									//
          // },
-         // onBlur(event) {
-         //    this.v_input_error = 'v-input--error'
-         //    this.v_field_error = 'v-field--error'
-         //    this.input_active = true;
-         //    this.setClasseErro()
-         // },
+         setClassRequired() {
+            if (this.validation === 'required') {
+               this.isRequired = this.validarCampo(this.value) && this.value > 0 ? '' : 'isRequired'
+            }
+         },
+         onBlur(event) {
+            console.log("onBlur");
+            this.setClassRequired()
+            // this.isRequired = this.validarCampo(this.value) && this.value > 0 ? '' : 'isRequired'
+            this.input_active = true;
+            // this.setClasseErro()
+         },
          // buildRules(obj) {
          //    const regras = obj.validation.split('|');
          //    for (let i = 0; i < regras.length; i++) {
@@ -193,7 +243,7 @@
          //    }
          // },
          removeMascaraMoney(x) {
-												
+
             if (this.validarCampo(x)) {
                // Remove os pontos que são usados como separadores de milhar
                let valorSemPontos = x.replace(/\./g, '');
@@ -203,7 +253,7 @@
 
                // Converte para número e retorna
                return parseFloat(valorConvertido);
-               
+
             } else {
                return ''
             }
@@ -226,7 +276,7 @@
                      minimumFractionDigits: numDecimais
                   })
                } else {
-                  
+
                   return Number(valor).toLocaleString(this.locale, {minimumFractionDigits: numDecimais})
                }
             }
@@ -255,12 +305,13 @@
             } else {
                this.money = this.mascaraValor(0, 2)
             }
+            this.setClassRequired()
          },
 
          money: function () {
             if (this.validarCampo(this.money)) {
                var v = this.removeMascaraMoney(this.money.replace(this.prefixo, ''))
-              
+
                this.$emit('update', v)
             }
             // if (this.input_active) {
@@ -272,6 +323,22 @@
 </script>
 
 <style lang="scss">
+			.isRequired {
+						/*v-field__outline*/
+						.v-field-label{
+									color: red;
+						}
+								.v-field__outline__start,
+								.v-field__outline__notch,
+								.v-field__outline__end,
+								.v-field--variant-outlined .v-field__outline__notch::after{
+											border-color: red;
+								}
+						/*.v-text-field {*/
+						/*border: red 1px dashed !important;*/
+						/*}*/
+			}
+			
 			.decimal {
 						.v-text-field input {
 									text-align: right !important;
