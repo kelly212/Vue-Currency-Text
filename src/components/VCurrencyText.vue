@@ -219,6 +219,8 @@
          setClassRequired() {
             if (this.validation === 'required') {
                this.isRequired = this.validarCampo(this.value) && this.value > 0 ? '' : 'isRequired'
+            } else {
+               this.isRequired = ''
             }
          },
          onBlur(event) {
