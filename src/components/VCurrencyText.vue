@@ -104,6 +104,7 @@
          density: {type: String, default: 'compact'},
          variant: {type: String, default: 'outlined'},
          disabled: {type: Boolean, default: false},
+         isDark: {type: Boolean, default: false},
          hideDetails: {type: Boolean, default: true},
          showHint: {type: Boolean, default: false},
          readonly: {type: Boolean, default: false},
@@ -218,7 +219,7 @@
          // },
          setClassRequired() {
             if (this.validation === 'required') {
-               this.isRequired = this.validarCampo(this.value) && this.value > 0 ? '' : 'isRequired'
+               this.isRequired = this.validarCampo(this.value) && this.value > 0 ? '' : (this.isDark ? 'isRequired-dark':'isRequired')
             } else {
                this.isRequired = ''
             }
@@ -338,6 +339,21 @@
 						/*.v-text-field {*/
 						/*border: red 1px dashed !important;*/
 						/*}*/
+			}
+			
+			.isRequired-dark {
+						.v-field-label{
+									color: #CF6679!important;
+									font-weight: inherit!important;
+									opacity: 1!important;
+						}
+						.v-field__outline__start,
+						.v-field__outline__notch,
+						.v-field__outline__end,
+						.v-field--variant-outlined .v-field__outline__notch::after{
+									border-color: #CF6679!important;
+									opacity: 1!important;
+						}
 			}
 			
 			.decimal {
