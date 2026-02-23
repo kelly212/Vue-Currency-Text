@@ -222,7 +222,6 @@
             }
          },
          onBlur(event) {
-            console.log("onBlur");
             this.setClassRequired()
             // this.isRequired = this.validarCampo(this.value) && this.value > 0 ? '' : 'isRequired'
             this.input_active = true;
