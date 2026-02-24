@@ -15,7 +15,7 @@
 						<!--@keypress="CheckNumeric(event)"-->
 						<!--@blur="onblurField">-->
 						<!--<div class="show_money">-->
-						<!--<money3  v-model="money" :value="value" v-bind="precision" @blur.native="onBlur"-->
+						<!--<money3  v-model="money" :modelValue="modelValue" v-bind="precision" @blur.native="onBlur"-->
 						<!--@input="$emit('input', money)" :rules=rulesValidation @focus.native="onFocus($event)">-->
 						<!--</money3>-->
 						<!--</div>-->
@@ -115,11 +115,13 @@
          locale: {type: String, default: 'pt-BR'},
          currency: {type: String, default: 'BRL'},
          label: {type: String},
-         value: {type: [String, Number]},
+         // value: {type: [String, Number]},
+         modelValue: { type: [String, Number], default: 0 },
          regras: {type: Array, default: () => []},
          options: {type: Object, default: () => ({})},
          precision: {
-            default: {
+            type: Object,
+            default: () => ({
                decimal: ',',
                thousands: '.',
                prefix: '',
@@ -130,12 +132,28 @@
                shouldRound: true,
                min: Number.MIN_SAFE_INTEGER,
                max: Number.MAX_SAFE_INTEGER
-
-               // ...this.options
-            }
-         },
+            })
+         }
+         // precision: {
+         //    default: {
+         //       decimal: ',',
+         //       thousands: '.',
+         //       prefix: '',
+         //       precision: 2,
+         //       masked: true,
+         //       disableNegative: true,
+         //       focusOnRight: true,
+         //       shouldRound: true,
+         //       min: Number.MIN_SAFE_INTEGER,
+         //       max: Number.MAX_SAFE_INTEGER
+									//
+         //       // ...this.options
+         //    }
+         // },
       },
-      component: {money3: Money3Component},
+      components: {
+         money3: Money3Component
+      },
       data() {
          return {
             isRequired: '',
@@ -219,14 +237,14 @@
          // },
          setClassRequired() {
             if (this.validation === 'required') {
-               this.isRequired = this.validarCampo(this.value) && this.value > 0 ? '' : (this.isDark ? 'isRequired-dark':'isRequired')
+               this.isRequired = this.validarCampo(this.modelValue) && this.modelValue > 0 ? '' : (this.isDark ? 'isRequired-dark':'isRequired')
             } else {
                this.isRequired = ''
             }
          },
          onBlur(event) {
             this.setClassRequired()
-            // this.isRequired = this.validarCampo(this.value) && this.value > 0 ? '' : 'isRequired'
+            // this.isRequired = this.validarCampo(this.modelValue) && this.modelValue > 0 ? '' : 'isRequired'
             this.input_active = true;
             // this.setClasseErro()
          },
@@ -238,7 +256,7 @@
          //          case 'required':
          //             obj.rulesValidation.push(v => !!v || 'Campo Obrigatório.');
          //             break;
-         //          case 'min_value':
+         //          case 'min_modelValue':
          //             obj.rulesValidation.push(v => (parseFloat(v) >= parseFloat(regra[1])) || 'Valor mínimo ' + regra[1] + ' ');
          //             break;
          //       }
@@ -291,8 +309,8 @@
          // }
       },
       mounted() {
-         if (this.validarCampo(this.value) && this.value >= 0) {
-            this.money = this.mascaraValor(this.value, 2)
+         if (this.validarCampo(this.modelValue) && this.modelValue >= 0) {
+            this.money = this.mascaraValor(this.modelValue, 2)
          }
       },
       computed: {
@@ -301,9 +319,9 @@
          // }
       },
       watch: {
-         value: function () {
-            if (this.validarCampo(this.value) && this.value >= 0) {
-               this.money = this.mascaraValor(this.value, 2)
+         modelValue: function () {
+            if (this.validarCampo(this.modelValue) && this.modelValue >= 0) {
+               this.money = this.mascaraValor(this.modelValue, 2)
             } else {
                this.money = this.mascaraValor(0, 2)
             }
