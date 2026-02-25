@@ -119,19 +119,19 @@
          value: { type: [String, Number], default: 0 },
          regras: {type: Array, default: () => []},
          options: {type: Object, default: () => ({})},
+         // precisao: {
+         //       decimal: ',',
+         //       thousands: '.',
+         //       prefix: '',
+         //       precision: 2,
+         //       masked: true,
+         //       disableNegative: true,
+         //       focusOnRight: true,
+         //       shouldRound: true,
+         //       min: Number.MIN_SAFE_INTEGER,
+         //       max: Number.MAX_SAFE_INTEGER
+         // },
          precisao: {
-               decimal: ',',
-               thousands: '.',
-               prefix: '',
-               precision: 2,
-               masked: true,
-               disableNegative: true,
-               focusOnRight: true,
-               shouldRound: true,
-               min: Number.MIN_SAFE_INTEGER,
-               max: Number.MAX_SAFE_INTEGER
-         },
-									precision: {
             type: Object,
             default: () => ({
                decimal: ',',
@@ -322,7 +322,7 @@
       },
       mounted() {
          if (this.validarCampo(this.value) && this.value >= 0) {
-            this.money = this.mascaraValor(this.value, 2)
+            this.money = this.mascaraValor(this.value, this.precisao.precision)
          }
       },
       computed: {
@@ -333,9 +333,9 @@
       watch: {
          value: function () {
             if (this.validarCampo(this.value) && this.value >= 0) {
-               this.money = this.mascaraValor(this.value, 2)
+               this.money = this.mascaraValor(this.value, this.precisao.precision)
             } else {
-               this.money = this.mascaraValor(0, 2)
+               this.money = this.mascaraValor(0, this.precisao.precision)
             }
             this.setClassRequired()
          },
