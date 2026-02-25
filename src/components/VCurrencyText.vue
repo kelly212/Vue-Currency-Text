@@ -1,64 +1,8 @@
 <template>
 			<div class="decimal">
-						<!--<v-text-field v-model="money"-->
-						<!--:id="id"-->
-						<!--:label="label"-->
-						<!--:prefix="prefixo"-->
-						<!--:ref="ref_currency"-->
-						<!--:rules="rulesValidation"-->
-						<!--:disabled="disabled"-->
-						<!--:variant="variant"-->
-						<!--:density="density"-->
-						<!--:hide-details="hideDetails"-->
-						<!--:readonly="readonly"-->
-						<!--style="z-index: 1"-->
-						<!--@keypress="CheckNumeric(event)"-->
-						<!--@blur="onblurField">-->
-						<!--<div class="show_money">-->
-						<!--<money3  v-model="money" :value="value" v-bind="precision" @blur.native="onBlur"-->
-						<!--@input="$emit('input', money)" :rules=rulesValidation @focus.native="onFocus($event)">-->
-						<!--</money3>-->
-						<!--</div>-->
-						<!--</v-text-field>-->
-						<!--<div-->
-								<!--class="v-input v-input&#45;&#45;horizontal v-input&#45;&#45;center-affix v-input&#45;&#45;density-compact v-theme&#45;&#45;dark v-locale&#45;&#45;is-ltr v-input&#45;&#45;error v-text-field inp">-->
-									<!--&lt;!&ndash;&ndash;&gt;-->
-									<!--<div class="v-input__control">-->
-												<!--<div class="v-field v-field&#45;&#45;center-affix v-field&#45;&#45;error v-field&#45;&#45;variant-outlined v-theme&#45;&#45;dark v-locale&#45;&#45;is-ltr">-->
-															<!--<div class="v-field__overlay"></div>-->
-															<!--<div class="v-field__loader">-->
-																		<!--<div class="v-progress-linear v-theme&#45;&#45;dark v-locale&#45;&#45;is-ltr" role="progressbar" aria-hidden="true" aria-valuemin="0"-->
-																							<!--aria-valuemax="100" style="top: 0px; height: 0px; &#45;&#45;v-progress-linear-height: 2px;">&lt;!&ndash;&ndash;&gt;-->
-																					<!--<div class="v-progress-linear__background bg-error"></div>-->
-																					<!--<div class="v-progress-linear__buffer bg-error" style="width: 0%;"></div>-->
-																					<!--<div class="v-progress-linear__indeterminate">-->
-																								<!--<div class="v-progress-linear__indeterminate long bg-error"></div>-->
-																								<!--<div class="v-progress-linear__indeterminate short bg-error"></div>-->
-																					<!--</div>&lt;!&ndash;&ndash;&gt;</div>-->
-															<!--</div>&lt;!&ndash;&ndash;&gt;-->
-															<!--<div class="v-field__field" data-no-activator="">&lt;!&ndash;&ndash;&gt;<label class="v-label v-field-label" id="descricao-label" aria-hidden="false"-->
-																																																																														<!--style="" for="descricao">&lt;!&ndash;&ndash;&gt;Descrição</label>&lt;!&ndash;&ndash;&gt;<input size="1"-->
-																																																																																																																																													<!--type="text"-->
-																																																																																																																																													<!--aria-labelledby="descricao-label"-->
-																																																																																																																																													<!--id="descricao"-->
-																																																																																																																																													<!--class="v-field__input"-->
-																																																																																																																																													<!--value=""-->
-																																																																																																																																													<!--autocomplete="off">-->
-																		<!--&lt;!&ndash;&ndash;&gt;</div>&lt;!&ndash;&ndash;&gt;&lt;!&ndash;&ndash;&gt;-->
-															<!--<div class="v-field__outline">-->
-																		<!--<div class="v-field__outline__start"></div>-->
-																		<!--<div class="v-field__outline__notch"><label class="v-label v-field-label v-field-label&#45;&#45;floating" aria-hidden="true" style="">-->
-																					<!--&lt;!&ndash;&ndash;&gt;Descrição</label></div>-->
-																		<!--<div class="v-field__outline__end"></div>&lt;!&ndash;&ndash;&gt;</div>-->
-												<!--</div>-->
-									<!--</div>&lt;!&ndash;&ndash;&gt;&lt;!&ndash;&ndash;&gt;</div>-->
-						
-						
-						<!--<p>isRequired:{{isRequired}}</p>-->
 						<div
 								:class=" (disabled ? 'v-input--disabled' : '')+' v-input v-input--horizontal v-input--center-affix v-input--density-'+density+' v-locale--is-ltr v-input--dirty v-text-field inp '+isRequired">
-						
-									<div class="v-input__control ">
+															<div class="v-input__control ">
 												<div
 														:class="(disabled ? 'v-field--disabled' : '')+'   v-field v-field--active v-field--center-affix v-field--dirty v-field--variant-'+variant+' v-theme--dark v-locale--is-ltr'">
 															<div class="v-field__field  " data-no-activator="">
@@ -119,18 +63,6 @@
          value: { type: [String, Number], default: 0 },
          regras: {type: Array, default: () => []},
          options: {type: Object, default: () => ({})},
-         // precisao: {
-         //       decimal: ',',
-         //       thousands: '.',
-         //       prefix: '',
-         //       precision: 2,
-         //       masked: true,
-         //       disableNegative: true,
-         //       focusOnRight: true,
-         //       shouldRound: true,
-         //       min: Number.MIN_SAFE_INTEGER,
-         //       max: Number.MAX_SAFE_INTEGER
-         // },
          precisao: {
             type: Object,
             default: () => ({
@@ -142,26 +74,11 @@
                disableNegative: true,
                focusOnRight: true,
                shouldRound: true,
-               min: Number.MIN_SAFE_INTEGER,
-               max: Number.MAX_SAFE_INTEGER
+															//Não use MIN_SAFE_INTEGER / MAX_SAFE_INTEGER por causa do Vue Cli.
+               // min: Number.MIN_SAFE_INTEGER,
+               // max: Number.MAX_SAFE_INTEGER
             })
          }
-         // precision: {
-         //    default: {
-         //       decimal: ',',
-         //       thousands: '.',
-         //       prefix: '',
-         //       precision: 2,
-         //       masked: true,
-         //       disableNegative: true,
-         //       focusOnRight: true,
-         //       shouldRound: true,
-         //       min: Number.MIN_SAFE_INTEGER,
-         //       max: Number.MAX_SAFE_INTEGER
-									//
-         //       // ...this.options
-         //    }
-         // },
       },
       components: {
          money3: Money3Component
@@ -184,69 +101,10 @@
          appendClick() {
             this.$emit('appendClick')
          },
-
-         // onblurField() {
-         //    this.$emit('blur')
-         // },
-         // toDecimal(v, tam = 2, valida_nan = false) {
-         //    try {
-         //       if (valida_nan) {
-         //          if (isNaN(parseFloat(v))) {
-         //             return 0
-         //          } else {
-         //             if (this.validarCampo(v)) {
-         //                return parseFloat(parseFloat(v).toFixed(tam))
-         //             } else {
-         //                return 0
-         //             }
-         //          }
-         //       } else {
-         //          let ret = 0;
-         //          if (this.validarCampo(v)) {
-         //             if (!this.validarCampo(tam)) tam = 2;
-         //             ret = parseFloat(parseFloat(v).toFixed(tam))
-         //          }
-         //          return ret
-         //       }
-         //    } catch (e) {
-         //       console.log(e)
-         //    }
-         // },
          validarCampo(campo) {
             return (campo !== undefined && campo !== null && campo !== '')
          },
-         // v-input--error
-         // setClasseErro() {
-         //    var v = this.removeMascaraMoney(this.money.replace(this.prefixo, ''))
-         //
-         //    if (this.validation === 'requerid') {
-         //       if (!this.validarCampo(v) || this.toDecimal(v) <= 0) {
-         //          this.v_input_error = 'v-input--error'
-         //          this.v_field_error = 'v-field--error'
-         //          this.errorMessages.push('Campo obrigatório')
-         //       } else {
-         //          this.v_input_error = ''
-         //          this.v_field_error = ''
-         //          this.errorMessages = []
-         //       }
-         //    } else {
-         //       this.v_input_error = ''
-         //       this.v_field_error = ''
-         //       this.errorMessages = []
-         //    }
-         //
-         // },
-         // onFocus(event) {
-         //    console.log("onFocus");
-         //    event.target.select();
-         //    this.v_input_error = ''
-         //    this.v_field_error = ''
-									//
-         //    if (this.input_active) {
-         //       // this.setClasseErro()
-         //    }
-									//
-         // },
+       
          setClassRequired() {
             if (this.validation === 'required') {
                this.isRequired = this.validarCampo(this.value) && this.value > 0 ? '' : (this.isDark ? 'isRequired-dark':'isRequired')
@@ -260,20 +118,7 @@
             this.input_active = true;
             // this.setClasseErro()
          },
-         // buildRules(obj) {
-         //    const regras = obj.validation.split('|');
-         //    for (let i = 0; i < regras.length; i++) {
-         //       const regra = regras[i].split(':');
-         //       switch (regra[0]) {
-         //          case 'required':
-         //             obj.rulesValidation.push(v => !!v || 'Campo Obrigatório.');
-         //             break;
-         //          case 'min_value':
-         //             obj.rulesValidation.push(v => (parseFloat(v) >= parseFloat(regra[1])) || 'Valor mínimo ' + regra[1] + ' ');
-         //             break;
-         //       }
-         //    }
-         // },
+         
          removeMascaraMoney(x) {
 
             if (this.validarCampo(x)) {
@@ -290,13 +135,7 @@
                return ''
             }
          },
-         // CheckNumeric(e) {
-         //    e = e || window.event;
-         //    const code = e.which || e.keyCode;
-         //    if ((code < 48 || code > 57)) {
-         //       e.preventDefault()
-         //    }
-         // },
+       
          mascaraValor(valor, decimais, comPrefixo) {
             var _this = this
             const numDecimais = (decimais !== null && decimais !== undefined) ? decimais : 2;
@@ -316,9 +155,6 @@
          },
       },
       created() {
-         // if (this.validation !== '') {
-         //    this.buildRules(this)
-         // }
       },
       mounted() {
          if (this.validarCampo(this.value) && this.value >= 0) {
@@ -326,9 +162,6 @@
          }
       },
       computed: {
-         // disabledClass() {
-         //    return this.disabled ? 'v-input--disabled' : ''
-         // }
       },
       watch: {
          value: function () {
